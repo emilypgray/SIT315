@@ -1,0 +1,32 @@
+const uint8_t LED = 10;
+const uint8_t button = 2;
+const uint8_t  magSensor = 3;
+
+volatile int LEDState = 0;
+
+void setup() {
+  pinMode(LED, OUTPUT);
+  pinMode(magSensor, INPUT);
+  pinMode(button, INPUT);
+   
+  attachInterrupt(digitalPinToInterrupt(button), buttonChange, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(magSensor), sensorChange, CHANGE);
+  Serial.begin(9600);
+}
+
+void loop() {
+}
+
+void buttonChange(){
+    LEDState = !LEDState;
+    digitalWrite(LED, LEDState);
+    Serial.print("Button Activated, LED State: ");
+    Serial.println(LEDState);
+}
+
+void sensorChange(){
+    LEDState = digitalRead(magSensor);
+    digitalWrite(LED, LEDState);
+    Serial.print("Sensor Activated, LED State: ");
+    Serial.println(LEDState);
+}
