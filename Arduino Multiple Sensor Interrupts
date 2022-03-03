@@ -2,7 +2,7 @@ const uint8_t LED = 10;
 const uint8_t button = 2;
 const uint8_t  magSensor = 3;
 
-volatile int LEDState = 0;
+volatile int LEDState = 0
 
 void setup() {
   pinMode(LED, OUTPUT);
